@@ -19,12 +19,9 @@ var mainMenuMessages = {
 								"            Penguins         " +
 								"\n**********************************************************************\n",
 					play: "1. To play for PenguinPebbles, press 1 ",
-					remove:"2. To view PenguinPebbles, press 2  ",
+					view:"2. To view PenguinPebbles, press 2  ",
 					spend:	"3. To spend PenguinPebbles,  press 3",
-					add: "4. To view all the animals, type 'view' or press 4",
-					remove: "5. To add a Penguin,  press 5",
-					search: "6 To search for a Penguin, press 6",
-					exit: "6. To exit, type 'exit' or press 7 "	
+					exit: "4. To exit, type 'exit' or press 4 "	
 
 					};
 
@@ -135,19 +132,13 @@ var viewanimal = function() {
 
 
 var exitProgram= function() {
-	console.log("Thanks " + userName + " for playing We Bought a Zoo!");
+	console.log("Thanks " + userName + " for playing");
 	process.exit();
 };
 
 
 //zookeeper functions
-var printMenuFeed = function() {
-	console.log("\n");
-	console.log("1. To feed an animal, enter 1");
-	console.log("2. To train an animal, enter 2");
-	console.log("3. To view animal healthPoint totals, enter 3");
-	console.log("4. To return to the main menu, enter 4");
-};
+
 
 
 var returnToZoo = function() {
@@ -248,25 +239,25 @@ var trainAnimal = function() {
 	
 	returnToZoo();
 };
+var printMenu = function() {
+    for (var key in mainMenuMessages) {
+      console.log(mainMenuMessages[key]);
+    }
+};
 
 var mainMenu = function() {
 	//present user with options 
 	wipeScreen();
 	printMenu();
 	var userSelection = sget("Make your selection:").trim();
-		userSelection=userSelection.toLowerCase();
-		if(uuserSelection==1 ) {
-			addPenguin();
+		
+		if(userSelection==1 ) {
+			play();
 		} else if (userSelection==2) {
-			removeAnimal();
-		} else if (userSelection=='search' || userSelection==3) {
-			searchAnimal();
-		} else if (userSelection=='view' || userSelection==4) {
-			viewanimal();	
-		} else if (userSelection=='play' || userSelection==5){
-			zooKeep();
-		}
-		  else if (userSelection=='exit' || userSelection==6) {
+			view();
+		} else if ( userSelection==3) {
+			spend();
+		}  else if (userSelection=='exit' || userSelection==4) {
 			exitProgram();
 		} else if (userSelection == 8){
 			pointTest();
@@ -279,11 +270,7 @@ var mainMenu = function() {
 
 };
 
-var printMenu = function() {
-    for (var key in mainMenuMessages) {
-      console.log(mainMenuMessages[key]);
-    }
-};
+
 
 var returnToMain = function () {
 	var returnToMain = sget("\nPress any key to return to main menu when ready.").trim();
