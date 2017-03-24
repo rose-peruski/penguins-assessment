@@ -9,7 +9,7 @@
 var sget = require("sget");
 
 var penguinArray = [];
-
+penguinPoints = 0;
 
 
 
@@ -34,32 +34,30 @@ var userMessages = {
 					};					
 
 var penguinPointOptions = {
-					twirl: "*T*w*i*r*l",
-					speak: "*singing* The Icebergs are alive, with the sound of fishies!!!!!!",
-					dance: "*dancing* dance, dance!"
+					twirl: "1. *T*w*i*r*l",
+					speak: "2. *singing* The Icebergs are alive, with the sound of fishies!!!!!!",
+					dance: "3 .*dancing* dance, dance!"
 }
 
 var Penguin = function(name, species, gender) {
 	this.name = name;
 	this.species = species;
 	this.gender = gender;
-	this.penguinPoints = 0;
+	
 
-	this.addPoints = function(points) {
-		this.points = points;
-		this.penguinPoints = this.points + this.penguinPoints;
-		console.log("Your Penguin has " + this.penguinPoints + " PenguinPoints to spend");
-	}
-
-	this.losePoints	= function(points) {
-		this.points = points;
-		this.penguinPoints = this.points - this.penguinPoints;
-		console.log("Your Penguin has " + this.penguinPoints + " PenguinPoints to spend");
+	
 	};
-}; 
 
 
+addPoints = function(points) {
+		penguinPoints += points;
+		console.log("Your Penguin has " + penguinPoints + " PenguinPoints to spend");
+	};
 
+losePoints	= function(points) {
+		penguinPoints -=points;
+		console.log("Your Penguin has " + penguinPoints + " PenguinPoints to spend");
+	}
 
 var wipeScreen = function () {
   return process.stdout.write('\033c');
@@ -102,13 +100,13 @@ var spendPoints = function() {
 
 			if (choice == 1 ) {
 				console.log("You made " +penguinArray[0].name + " twirl around!");
-				penguinArray[0].losePoints(5);
+				losePoints(5);
 			} else if (choice == 2) {
-				console.log("You made " +penguinArray[0].name + " twirl around!");
-				penguinArray[0].losePoints(5);
+				console.log("You made " +penguinArray[0].name + " sing!");
+				losePoints(10);
 			} else if (choice == 3) {
-				console.log("You made " +penguinArray[0].name + " twirl around!");
-				penguinArray[0].losePoints(5);
+				console.log("You made " +penguinArray[0].name + " dance!");
+				losePoints(15);
 			} else if (choice ==4){
 				mainMenu();
 			} else {
@@ -138,10 +136,10 @@ var playGame = function() {
 
 	if (answer == (num1+num2)) {
 		console.log("Correct!");
-		penguinArray[0].addPoints(5);
+		addPoints(5);
 	} else {
 		console.log("Sorry, that is incorrect, try again!");
-		penguinArray[0].losePoints(5);
+		losePoints(5);
 	}
 	returnToMain();
 };
