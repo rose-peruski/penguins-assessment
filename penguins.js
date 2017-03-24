@@ -101,6 +101,7 @@ var spendPoints = function() {
 			if (choice == 1 ) {
 				console.log("You made " +penguinArray[0].name + " twirl around!");
 				losePoints(5);
+				
 			} else if (choice == 2) {
 				console.log("You made " +penguinArray[0].name + " sing!");
 				losePoints(10);
