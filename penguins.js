@@ -1,6 +1,5 @@
-//BEFORE TURNING IN
-
-//check to see if the remove option works in the add function
+//NEXT VERSION
+//rework to add more penguins
 
 
 
@@ -45,9 +44,15 @@ var Penguin = function(name, species, gender) {
 	this.gender = gender;
 	this.penguinPoints = 0;
 
-	this.changePoints = function(points) {
+	this.addPoints = function(points) {
 		this.points = points;
 		this.penguinPoints = this.points + this.penguinPoints;
+		console.log("Your Penguin has " + this.penguinPoints + " PenguinPoints to spend");
+	}
+
+	this.losePoints	= function(points) {
+		this.points = points;
+		this.penguinPoints = this.points - this.penguinPoints;
 		console.log("Your Penguin has " + this.penguinPoints + " PenguinPoints to spend");
 	};
 }; 
@@ -58,82 +63,18 @@ var Penguin = function(name, species, gender) {
 var wipeScreen = function () {
   return process.stdout.write('\033c');
 };
-var returnToRemove= function() {
-	var info = sget(userMessages.remove).trim;
+// var returnToRemove= function() {
+// 	var info = sget(userMessages.remove).trim;
 		
-		if(info == 1) {
-      		removeAnimal();
-        } else if (info == 2) {
-            mainMenu();
-		} 
-};
+// 		if(info == 1) {
+//       		removeAnimal();
+//         } else if (info == 2) {
+//             mainMenu();
+// 		} 
+// };
 
-var removeAnimal = function() {
-	console.log("Sad to lose a friend, " + userName +", but sometimes, love just ain't enough");
-	viewAnimalNames();
-	removal = sget(userMessages.name).trim();
-	
-	for (var i = 0; i < zooArray.length; i++) {
-		if ((zooArray[i].name == removal)) {
-			zooArray.splice(i, 1);
-			viewAnimalNames();
-			break;
-		}
+// // 
 
-		if (i == zooArray.length-1) {
-			console.log(userMessages.unable);
-		}
-	}
-	returnToMain();
-};
-
-var searchAnimal = function() {
-	console.log("What kind of animal would you like to find " + userName +"?");
-	answer1 =sget(userMessages.gender).trim(); 
-	answer2=sget(userMessages.species).trim();
-	answer1=answer1.toLowerCase();
-	answer2=answer2.toLowerCase();
-	
-	for (var i=0; i<zooArray.length; i++){
-		var genderAnimal=answer1.indexOf(zooArray[i].gender);
-		var speciesAnimal=answer2.indexOf(zooArray[i].species);
-		
-		if (genderAnimal==0 && speciesAnimal==0) {
-			console.log(answer1 + " " + answer2 + " named " + zooArray[i].name + " found!");
-			
-			break;
-		}
-		if (i == zooArray.length-1) {
-			console.log(userMessages.unable);
-		} 
-
-	}
-	returnToMain();
-	
-
-};
-
-var viewanimal = function() { 
-	console.log("\nLet's look at all the animals in " + zooName);
-	console.log ("Name Gender Species");
-	console.log("_____________________");
-	zooArray.sort(function(a,b) {
-		var nameA=a.name;
-		var nameB=b.name;
-    if (nameA < nameB) //sort string ascending
-        return -1; 
-    if (nameA > nameB)
-        return 1;
-    	return 0 //default return value (no sorting)
-	});
-
-	zooArray.forEach(function(object) { 
-		console.log(object.name + " " + object.gender + " " + object.species);
-	//console.log(zooArray);
-	
-	});
-		returnToMain();
-};
 
 
 var exitProgram= function() {
@@ -142,15 +83,10 @@ var exitProgram= function() {
 };
 
 
-//zookeeper functions
 
 
 
-var returnToZoo = function() {
-	var returnToZoo = sget("\nPress any key to return to play menu when ready.").trim();
-	zooKeep();
-};
-var zooKeep = function() {
+var spendPoints = function() {
 	console.log("\nTime to work with your animals, " + userName);
 	printMenuFeed();
 	choice= sget("Enter your selection: ").trim();
@@ -171,79 +107,32 @@ var zooKeep = function() {
 
 };
 
-var viewAnimalNames = function() {
-	console.log("\nList of animals in " + zooName);
-	zooArray.forEach(function(object) { 
-		console.log(object.name);
-		});
+
+var viewPenguinPoints = function() {
+	console.log("Let's see how many Penguin Points " + Penguin.name + " has " + userName );
+		console.log(penguinArray[0].penguinPoints);
+		returnToMain();
 };
 
-var viewAnimalPoints = function() {
-	console.log("\nAnimals  and their healthPoint totals in " + zooName);
-	zooArray.forEach(function(object) { 
-		console.log(object.name + " " + object.penguinPoints);
-		});
-	returnToZoo();
-};
+var playGame = function() {
+	var num1 = Math.floor((Math.random() * 10));
+	var num2 = 	Math.floor((Math.random() * 10));
 
-var feedAnimal = function(){
-	viewAnimalNames();
-	answer1 =sget(userMessages.name).trim(); 
-	
-	answer1=answer1.toLowerCase();
-	
-	
-	for (var i=0; i<zooArray.length; i++){
-		var searchAnimal=answer1.indexOf(zooArray[i].name);
-		
-		
-		if (searchAnimal>-1) {
-			console.log(zooArray[i].name);
-			animalNum = i;
-			console.log ("You just gave your animal a treat!\n");
-			zooArray[animalNum].changePoints(10);
-			break;
-		}
-		if (i == zooArray.length-1) {
-			console.log(userMessages.unable);
-		} 
+	console.log("To earn Penguin Points for " + Penguin.name + ", " + userName + " must answer a math question");
+	var answer = sget(" What is " + num1 + " + "+ num2 + "?").trim();	
 
+	if (answer == (num1+num2)) {
+		console.log("Correct!");
+		penguinArray[0].addPoints(5);
+	} else {
+		console.log("Sorry, that is incorrect, try again!");
+		penguinArray[0].losePoints(5);
 	}
-
-	
-	returnToZoo();
-
+	returnToMain();
 };
 
 
-var trainAnimal = function() {
-	viewAnimalNames();
 	
-	answer1 =sget(userMessages.name).trim(); 
-	
-	answer1=answer1.toLowerCase();
-	
-	
-	for (var i=0; i<zooArray.length; i++){
-		var searchAnimal=answer1.indexOf(zooArray[i].name);
-		
-		
-		if (searchAnimal>-1) {
-			console.log(zooArray[i].name);
-			animalNum = i;
-			console.log("You just trained your animal!");
-			zooArray[animalNum].changePoints(5);
-			break;
-		}
-		if (i == zooArray.length-1) {
-			console.log(userMessages.unable);
-		} 
-
-	}
-
-	
-	returnToZoo();
-};
 var printMenu = function() {
     for (var key in mainMenuMessages) {
       console.log(mainMenuMessages[key]);
@@ -257,11 +146,11 @@ var mainMenu = function() {
 	var userSelection = sget("Make your selection:").trim();
 		
 		if(userSelection==1 ) {
-			play();
+			playGame();
 		} else if (userSelection==2) {
-			view();
+			viewPenguinPoints();
 		} else if ( userSelection==3) {
-			spend();
+			spendPoints();
 		}  else if (userSelection=='exit' || userSelection==4) {
 			exitProgram();
 		} else if (userSelection == 8){
@@ -310,8 +199,7 @@ var addPenguin = function() {
 		var newPenguin = new Penguin (penguinName, penguinSpecies, penguinGender);
 		penguinArray.push(newPenguin);
 
-		//console.log(zooArray);
-		//viewAnimalNames();
+	
 		
 		returnToMain();
 	} ;
@@ -344,10 +232,6 @@ var addPenguin = function() {
 
 
 var runProgram=function() {
-	var penguin1 = new Penguin ("lambert", "lion", "male");
-	var penguin2 = new Penguin ("elsie", "cow", "female");
-	penguinArray.push(penguin1);
-	penguinArray.push(penguin2);
 	console.log(mainMenuMessages.welcome);
 
 	var name = sget("Please enter your Name: ").trim();
@@ -361,4 +245,5 @@ var runProgram=function() {
 	addPenguin();
 
 }();
+
 
