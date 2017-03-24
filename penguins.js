@@ -9,7 +9,7 @@
 var sget = require("sget");
 
 var penguinArray = [];
-penguinPoints = 0;
+var penguinPoints = 0;
 
 
 
@@ -127,7 +127,7 @@ var spendPoints = function() {
 
 var viewPenguinPoints = function() {
 	console.log("Let's see how many Penguin Points " + Penguin.name + " has " + userName );
-		console.log(penguinArray[0].penguinPoints);
+		console.log(penguinPoints);
 		returnToMain();
 };
 
