@@ -38,6 +38,7 @@ var penguinPointOptions = {
 					speak: "The Icebergs are alive, with the sound of fishies!!!!!!",
 					dance: "dance, dance!"
 }
+
 var Penguin = function(name, species, gender) {
 	this.name = name;
 	this.species = species;
@@ -83,12 +84,19 @@ var exitProgram= function() {
 };
 
 
-
+var printPenguinPointOptions = function() {
+	or (var key in penguinPointOptions {
+      console.log(penguinPointOptions[key]);
+    }
+}
 
 
 var spendPoints = function() {
-	console.log("\nTime to work with your animals, " + userName);
-	printMenuFeed();
+	if (pengunArray[0].PenguinPoints<=20) {
+		console.log("Sorry, you need at least 20 points to do tricks!")
+	} else {
+		console.log("\nTime to work with your animals, " + userName);
+	printPengu();
 	choice= sget("Enter your selection: ").trim();
 
 		if (choice == 1 ) {
@@ -104,6 +112,9 @@ var spendPoints = function() {
 			zooKeep();
 		}
 
+
+	}
+	
 
 };
 
