@@ -34,6 +34,11 @@ var userMessages = {
 					
 					};					
 
+var penguinPointOptions = {
+					twirl: "*T*w*i*r*l",
+					speak: "The Icebergs are alive, with the sound of fishies!!!!!!",
+					dance: "dance, dance!"
+}
 var Penguin = function(name, species, gender) {
 	this.name = name;
 	this.species = species;
