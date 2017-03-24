@@ -126,7 +126,7 @@ var spendPoints = function() {
 
 
 var viewPenguinPoints = function() {
-	console.log("Let's see how many Penguin Points " + Penguin.name + " has " + userName );
+	console.log("Let's see how many Penguin Points " + penguinArray[0].name + " has " + userName );
 		console.log(penguinPoints);
 		returnToMain();
 };
