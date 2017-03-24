@@ -10,10 +10,8 @@
 var sget = require("sget");
 
 var penguinArray = [];
-//var userName;
-var checkGender;
-var checkSpecies;
-var animalNum;
+
+
 
 
 var mainMenuMessages = {
@@ -32,7 +30,7 @@ var mainMenuMessages = {
 
 var userMessages = {
 					name: "\nEnter your Penguin's name: ",
-					species: "\nEnter your Penguin's species: ",
+					species: "\nEnter your Penguin's species: Emperor, Gentoo, or Rockhopper ",
 					gender: "\nEnter Penguin gender 'male'or 'female' - sorry, new genders will be introduced as become available):",
 					invalid: "\nInvalid Entry",
 					unable: "\nUnable to find Penguin",
@@ -51,31 +49,9 @@ var Penguin = function(name, species, gender) {
 		console.log("Your Penguin has " + this.penguinPoints + " PenguinPoints to spend");
 	};
 }; 
-var checkGenderSpecies = function() {
 
-	for (var i=0; i<zooArray.length; i++){
-		var genderAnimal=checkGender.indexOf(zooArray[i].gender);
-		var speciesAnimal=checkSpecies.indexOf(zooArray[i].species);
-		
-		if (genderAnimal==0 && speciesAnimal==0) {
-			console.log("You already have an animal of this gender and species named " + zooArray[i].name);	
-			returnToMain();
-			
-		} 
 
-		
-		} 
 
-};
-
-var sleep = function(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-};
 
 var wipeScreen = function () {
   return process.stdout.write('\033c');
@@ -279,9 +255,9 @@ var mainMenu = function() {
 	printMenu();
 	var userSelection = sget("Make your selection:").trim();
 		userSelection=userSelection.toLowerCase();
-		if(userSelection=='add' || userSelection==1 ) {
-			addAnimal();
-		} else if (userSelection=='remove' || userSelection==2) {
+		if(uuserSelection==1 ) {
+			addPenguin();
+		} else if (userSelection==2) {
 			removeAnimal();
 		} else if (userSelection=='search' || userSelection==3) {
 			searchAnimal();
@@ -317,8 +293,21 @@ var returnToMain = function () {
 var addPenguin = function() {
 	
 		var penguinName = sget("\n Ok, " + userName + userMessages.name).trim();
+			penguinName=penguinName.toLowerCase();
+		
+
 		var penguinSpecies = sget(userMessages.species).trim();
+			penguinSpecies=penguinSpecies.toLowerCase();
+			if (penguinSpecies == "emperor" || penguinSpecies == 'gentoo' || penguinSpecies == "rockhopper") {
+				
+			} else {
+				console.log(userMessages.invalid);
+				addPenguin();
+			}
+
+
 		var penguinGender = sget(userMessages.gender).trim();
+			penguinGender=penguinGender.toLowerCase();
 			if (penguinGender =='male' || penguinGender=='female') {
 				
 			} else {
@@ -326,12 +315,6 @@ var addPenguin = function() {
 				addPenguin();
 			}
 	
-
-		penguinName=penguinName.toLowerCase();
-		penguinSpecies=penguinSpecies.toLowerCase();
-		penguinGender=penguinGender.toLowerCase();
-	
-
 		var newPenguin = new Penguin (penguinName, penguinSpecies, penguinGender);
 		penguinArray.push(newPenguin);
 
