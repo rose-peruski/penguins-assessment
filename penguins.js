@@ -35,8 +35,8 @@ var userMessages = {
 
 var penguinPointOptions = {
 					twirl: "*T*w*i*r*l",
-					speak: "The Icebergs are alive, with the sound of fishies!!!!!!",
-					dance: "dance, dance!"
+					speak: "*singing* The Icebergs are alive, with the sound of fishies!!!!!!",
+					dance: "*dancing* dance, dance!"
 }
 
 var Penguin = function(name, species, gender) {
@@ -84,36 +84,40 @@ var exitProgram= function() {
 };
 
 
-var printPenguinPointOptions = function() {
-	or (var key in penguinPointOptions {
+var printPenguinOptions = function() {
+    for (var key in penguinPointOptions) {
       console.log(penguinPointOptions[key]);
     }
-}
+};
+
 
 
 var spendPoints = function() {
-	if (pengunArray[0].PenguinPoints<=20) {
-		console.log("Sorry, you need at least 20 points to do tricks!")
+	if (penguinArray[0].PenguinPoints<=20) {
+		console.log("Sorry, " + userName +" you need at least 20 points to do tricks!");
 	} else {
-		console.log("\nTime to work with your animals, " + userName);
-	printPengu();
-	choice= sget("Enter your selection: ").trim();
+		console.log("\n Hi " + userName + "Time to play with, " +penguinArray[0].name);
+		printPenguinOptions();
+		choice= sget("Enter your selection: ").trim();
 
-		if (choice == 1 ) {
-			feedAnimal();
-		} else if (choice == 2) {
-			trainAnimal();
-		} else if (choice == 3) {
-			viewAnimalPoints();
-		} else if (choice ==4){
-			mainMenu();
-		} else {
-			console.log ("Invalid choice, try again.\n");
-			zooKeep();
+			if (choice == 1 ) {
+				console.log("You made " +penguinArray[0].name + " twirl around!");
+				penguinArray[0].losePoints(5);
+			} else if (choice == 2) {
+				console.log("You made " +penguinArray[0].name + " twirl around!");
+				penguinArray[0].losePoints(5);
+			} else if (choice == 3) {
+				console.log("You made " +penguinArray[0].name + " twirl around!");
+				penguinArray[0].losePoints(5);
+			} else if (choice ==4){
+				mainMenu();
+			} else {
+				console.log ("Invalid choice, try again.\n");
+				spendPoints();
+			}
+
+
 		}
-
-
-	}
 	
 
 };
