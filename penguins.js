@@ -14,7 +14,7 @@ var penguinArray = [];
 var checkGender;
 var checkSpecies;
 var animalNum;
-//var zooName;
+
 
 var mainMenuMessages = {
 					welcome: "\n**********************************************************************\n" +
@@ -25,17 +25,16 @@ var mainMenuMessages = {
 					spend:	"3. To spend PenguinPebbles,  press 3",
 					add: "4. To view all the animals, type 'view' or press 4",
 					remove: "5. To add a Penguin,  press 5",
-					search: "6 To search for a Penguin, press 6"
+					search: "6 To search for a Penguin, press 6",
 					exit: "6. To exit, type 'exit' or press 7 "	
 
 					};
 
 var userMessages = {
-					name: "\nEnter Penguin name: ",
-					species: "\nEnter Penguin species: ",
+					name: "\nEnter your Penguin's name: ",
+					species: "\nEnter your Penguin's species: ",
 					gender: "\nEnter Penguin gender 'male'or 'female' - sorry, new genders will be introduced as become available):",
 					invalid: "\nInvalid Entry",
-					remove: "\nYou have too many Penguins in the zoo! To remove an Penguin, press 1 to go back to the main menu, press 2",
 					unable: "\nUnable to find Penguin",
 					
 					};					
@@ -315,40 +314,32 @@ var returnToMain = function () {
 	mainMenu();
 };
 
-var addAnimal = function() {
-	if (zooArray.length<10) {
-		console.log("\n Let's add an animal to " +zooName);
-		var animalName = sget(userMessages.name).trim();
-		var animalSpecies = sget(userMessages.species).trim();
-		var animalGender = sget(userMessages.gender).trim();
-			if (animalGender =='male' || animalGender=='female') {
+var addPenguin = function() {
+	
+		var penguinName = sget("\n Ok, " + userName + userMessages.name).trim();
+		var penguinSpecies = sget(userMessages.species).trim();
+		var penguinGender = sget(userMessages.gender).trim();
+			if (penguinGender =='male' || penguinGender=='female') {
 				
 			} else {
 				console.log(userMessages.invalid);
-				addAnimal();
+				addPenguin();
 			}
+	
 
-		animalName=animalName.toLowerCase();
-		animalSpecies=animalSpecies.toLowerCase();
-		animalGender=animalGender.toLowerCase();
-		
-		checkGender=animalGender;
-		checkSpecies=animalSpecies;
+		penguinName=penguinName.toLowerCase();
+		penguinSpecies=penguinSpecies.toLowerCase();
+		penguinGender=penguinGender.toLowerCase();
+	
 
-		checkGenderSpecies();
-
-		var newAnimal = new Animal (animalName, animalSpecies, animalGender);
-		zooArray.push(newAnimal);
+		var newPenguin = new Penguin (penguinName, penguinSpecies, penguinGender);
+		penguinArray.push(newPenguin);
 
 		//console.log(zooArray);
-		viewAnimalNames();
+		//viewAnimalNames();
+		
 		returnToMain();
-	} else {
-		console.log("Your zoo is over capacity. Must remove an animal before adding")
-		returnToMain();
-
-
-	}
+	} ;
 
 
 
@@ -367,96 +358,32 @@ var addAnimal = function() {
 
 
 
-var pointTest = function() {
-	console.log("This shows how many points our animals have");
-	var test1 = console.log("animal one points is 0");
-				console.log(zooArray[1].penguinPoints==0);
-	var test2 = console.log("new animal points (animal 3) is 0");
-				console.log(zooArray[2].penguinPoints==0);			
-}
+// var pointTest = function() {
+// 	console.log("This shows how many points our animals have");
+// 	var test1 = console.log("animal one points is 0");
+// 				console.log(zooArray[1].penguinPoints==0);
+// 	var test2 = console.log("new animal points (animal 3) is 0");
+// 				console.log(zooArray[2].penguinPoints==0);			
+// }}
 
 
-};
+
 var runProgram=function() {
-	var animal1 = new Animal("lambert", "lion", "male");
-	var animal2 = new Animal("elsie", "cow", "female");
-	zooArray.push(animal1);
-	zooArray.push(animal2);
+	var penguin1 = new Penguin ("lambert", "lion", "male");
+	var penguin2 = new Penguin ("elsie", "cow", "female");
+	penguinArray.push(penguin1);
+	penguinArray.push(penguin2);
 	console.log(mainMenuMessages.welcome);
 
-	var name = sget("Please enter your Zookeeper Name: ").trim();
+	var name = sget("Please enter your Name: ").trim();
 	userName = name;
-	var name2= sget("Please enter your Zoo's Name: ").trim();
-	zooName = name2;
-
-	console.log("Welcome " + userName +" to your zoo " + zooName + "!\n");
-
-	console.log("Let's start by adding your first animal to the zoo!");
 	
-	addAnimal();
+
+	console.log("Welcome " + userName +"!\n");
+
+	console.log("Let's start by adding your first Penguin!");
+	
+	addPenguin();
 
 }();
-
-//didn't get to add any of this in at the end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-// 	returnToMain();
-// };
-
-//for each trial
-// var removeAnimal = function() {
-// 	removal = sget(userMessages.name).trim();
-// 	removal=removal.toLowerCase();
-
-// 	zooArray.forEach(function(object) { 
-// 		//console.log(object.name);
-// 		if ((object.name == removal)) {
-// 			zooArray.splice(object,1);
-// 			// break;
-// 		}
-	
-
-// 		if (object.name != removal) {
-// 			console.log(userMessages.unable);
-// 		}
-		
-// 	})
-// 	returnToMain();
-// }
-
-
-
-
-
-
-
-/*failed attempt at using find()
-function checkGender(input) {
-	console.log(input);
-	console.log(input.zooArray.gender);
-	
-
-}
-
-function myFunction() {
-	console.log(zooArray.find(checkGender));
-}
-*/
 
