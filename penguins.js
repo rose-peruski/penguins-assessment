@@ -91,8 +91,9 @@ var printPenguinOptions = function() {
 
 
 var spendPoints = function() {
-	if (penguinArray[0].PenguinPoints<=20) {
+	if (penguinPoints<20) {
 		console.log("Sorry, " + userName +" you need at least 20 points to do tricks!");
+		returnToMain();
 	} else {
 		console.log("\n Hi " + userName + "Time to play with, " +penguinArray[0].name);
 		printPenguinOptions();
@@ -101,13 +102,15 @@ var spendPoints = function() {
 			if (choice == 1 ) {
 				console.log("You made " +penguinArray[0].name + " twirl around!");
 				losePoints(5);
-				
+				returnToMain();
 			} else if (choice == 2) {
 				console.log("You made " +penguinArray[0].name + " sing!");
 				losePoints(10);
+				returnToMain();
 			} else if (choice == 3) {
 				console.log("You made " +penguinArray[0].name + " dance!");
 				losePoints(15);
+				returnToMain();
 			} else if (choice ==4){
 				mainMenu();
 			} else {
@@ -167,8 +170,6 @@ var mainMenu = function() {
 			spendPoints();
 		}  else if (userSelection=='exit' || userSelection==4) {
 			exitProgram();
-		} else if (userSelection == 8){
-			pointTest();
 		} 
 		else {
 			console.log(userMessages.invalid);
@@ -217,31 +218,6 @@ var addPenguin = function() {
 		
 		returnToMain();
 	} ;
-
-
-
-// var pointCounter=function(){
-// 	if (penguinPoints==1) {
-// 		console.log("You have 1 point.");
-// 	} else{
-// 	console.log("You have " + penguinPoints + " points.");}
-
-// 	returnToMain();
-
-// };
-
-//helper functions
-
-
-
-
-// var pointTest = function() {
-// 	console.log("This shows how many points our animals have");
-// 	var test1 = console.log("animal one points is 0");
-// 				console.log(zooArray[1].penguinPoints==0);
-// 	var test2 = console.log("new animal points (animal 3) is 0");
-// 				console.log(zooArray[2].penguinPoints==0);			
-// }}
 
 
 
