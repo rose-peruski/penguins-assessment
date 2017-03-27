@@ -96,7 +96,7 @@ var spendPoints = function() {
 		console.log("Sorry, " + userName +" you need at least 20 points to do tricks!");
 		returnToMain();
 	} else {
-		console.log("\n Hi " + userName + "Time to play with, " +penguinArray[0].name);
+		console.log("\n Allllllright! " + userName + "! Time to play with, " +penguinArray[0].name);
 		printPenguinOptions();
 		choice= sget("Enter your selection: ").trim();
 
@@ -136,7 +136,7 @@ var playGame = function() {
 	var num1 = Math.floor((Math.random() * 10));
 	var num2 = 	Math.floor((Math.random() * 10));
 
-	console.log("To earn Penguin Points for " + Penguin.name + ", " + userName + " must answer a math question");
+	console.log("To earn Penguin Points for " + penguinArray[0].name + ", " + userName + " must answer a math question");
 	var answer = sget(" What is " + num1 + " + "+ num2 + "?").trim();	
 
 	if (answer == (num1+num2)) {
@@ -190,7 +190,7 @@ var returnToMain = function () {
 var addPenguin = function() {
 	
 		var penguinName = sget("\n Ok, " + userName + userMessages.name).trim();
-			penguinName=penguinName.toLowerCase();
+			
 		
 
 		var penguinGender = sget("Now, " + userName + " let's give " + penguinName + " a gender. " + userMessages.gender).trim();
