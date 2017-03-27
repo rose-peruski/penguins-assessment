@@ -10,6 +10,7 @@ var sget = require("sget");
 
 var penguinArray = [];
 var penguinPoints = 0;
+var userName;
 
 
 
@@ -26,7 +27,7 @@ var mainMenuMessages = {
 
 var userMessages = {
 					name: "\nEnter your Penguin's name: ",
-					species: "\nEnter your Penguin's species: Emperor, Gentoo, or Rockhopper ",
+					species: "\n Enter your Penguin's species: Emperor, Gentoo, or Rockhopper ",
 					gender: "\nEnter Penguin gender 'male'or 'female' - sorry, new genders will be introduced as become available):",
 					invalid: "\nInvalid Entry",
 					unable: "\nUnable to find Penguin",
@@ -126,7 +127,7 @@ var spendPoints = function() {
 
 
 var viewPenguinPoints = function() {
-	console.log("Let's see how many Penguin Points " + penguinArray[0].name + " has " + userName );
+	console.log("Let's see how many Penguin Points " + penguinArray[0].name + " has, " + userName );
 		console.log(penguinPoints);
 		returnToMain();
 };
@@ -192,17 +193,7 @@ var addPenguin = function() {
 			penguinName=penguinName.toLowerCase();
 		
 
-		var penguinSpecies = sget(userMessages.species).trim();
-			penguinSpecies=penguinSpecies.toLowerCase();
-			if (penguinSpecies == "emperor" || penguinSpecies == 'gentoo' || penguinSpecies == "rockhopper") {
-				
-			} else {
-				console.log(userMessages.invalid);
-				addPenguin();
-			}
-
-
-		var penguinGender = sget(userMessages.gender).trim();
+		var penguinGender = sget("Now, " + userName + " let's give " + penguinName + " a gender. " + userMessages.gender).trim();
 			penguinGender=penguinGender.toLowerCase();
 			if (penguinGender =='male' || penguinGender=='female') {
 				
@@ -210,6 +201,15 @@ var addPenguin = function() {
 				console.log(userMessages.invalid);
 				addPenguin();
 			}
+
+		var penguinSpecies = sget("Ok, " + userName + " let's pick " + penguinName + "'s species." +userMessages.species).trim();
+			penguinSpecies=penguinSpecies.toLowerCase();
+			if (penguinSpecies == "emperor" || penguinSpecies == 'gentoo' || penguinSpecies == "rockhopper") {
+				
+			} else {
+				console.log(userMessages.invalid);
+				addPenguin();
+			}	
 	
 		var newPenguin = new Penguin (penguinName, penguinSpecies, penguinGender);
 		penguinArray.push(newPenguin);
